@@ -1,5 +1,4 @@
 $kind: http-request
-name: Register a new user
 url: "{{baseUrl}}/v1/users/register"
 method: POST
 headers:
@@ -37,7 +36,6 @@ scripts:
       console.log('Generated password:', password);
     language: text/javascript
   - type: afterResponse
-    language: text/javascript
     code: |-
       // Store the returned user ID so other requests can access it later
       pm.test('Response contains a user id', function () {
@@ -47,5 +45,6 @@ scripts:
           pm.collectionVariables.set('userId', userId);
           console.log('Stored userId:', userId);
       });
+    language: text/javascript
 examples: ./.resources/Register a new user.resources/examples
 order: 1000

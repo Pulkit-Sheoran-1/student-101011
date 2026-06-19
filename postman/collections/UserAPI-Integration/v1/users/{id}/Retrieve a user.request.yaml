@@ -23,11 +23,11 @@ body:
   content: ""
 scripts:
   - type: afterResponse
-    language: text/javascript
     code: |-
       // Verify the endpoint returns 200 OK
       pm.test('Status code is 200', function () {
           pm.response.to.have.status(200);
       });
+    language: text/javascript
 examples: ./.resources/Retrieve a user.resources/examples
 order: 1000

@@ -1,5 +1,4 @@
 $kind: collection
-name: UserAPI-Integration
 description: hola amigo!!
 variables:
   baseUrl: /
@@ -7,7 +6,7 @@ variables:
   password: ""
   userId: ""
 auth:
-  - id: 35ce3485-3dfc-4860-bd87-f675adb310ad
+  - id: 6287e98f-a7f9-41fd-929d-9a1b1f1595a9
     type: apikey
     name: apikey auth
     credentials:
