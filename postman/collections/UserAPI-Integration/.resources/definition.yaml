@@ -1,0 +1,16 @@
+$kind: collection
+name: UserAPI-Integration
+description: hola amigo!!
+variables:
+  baseUrl: /
+  username: ""
+  password: ""
+  userId: ""
+auth:
+  - id: 35ce3485-3dfc-4860-bd87-f675adb310ad
+    type: apikey
+    name: apikey auth
+    credentials:
+      key: X-API-Key
+      value: "{{apiKey}}"
+      in: header

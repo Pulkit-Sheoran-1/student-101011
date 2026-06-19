@@ -1,0 +1,51 @@
+$kind: http-request
+name: Register a new user
+url: "{{baseUrl}}/v1/users/register"
+method: POST
+headers:
+  Content-Type: application/json
+  Accept: application/json
+body:
+  type: json
+  content: |-
+    {
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  $type: |-
+    {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    }
+scripts:
+  - type: beforeRequest
+    code: |-
+      const username = pm.variables.replaceIn('{{$randomUserName}}');
+      const password = pm.variables.replaceIn('{{$randomPassword}}');
+
+      pm.collectionVariables.set('username', username);
+      pm.collectionVariables.set('password', password);
+
+      console.log('Generated username:', username);
+      console.log('Generated password:', password);
+    language: text/javascript
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      // Store the returned user ID so other requests can access it later
+      pm.test('Response contains a user id', function () {
+          const body = pm.response.json();
+          const userId = body.id || body.userId || (body.user && body.user.id);
+          pm.expect(userId, 'user id in response').to.exist;
+          pm.collectionVariables.set('userId', userId);
+          console.log('Stored userId:', userId);
+      });
+examples: ./.resources/Register a new user.resources/examples
+order: 1000
